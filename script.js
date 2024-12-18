@@ -39,48 +39,59 @@ function playGame () {
         humanChoice = humanChoice.toLowerCase();
     
         if (humanChoice === computerChoice) {
-            console.log(`It\'s a draw. The computer chose: ${computerChoice}. You chose: ${humanChoice}`);
+            console.log(`It\'s a draw. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
+            alert(`It\'s a draw. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
         }
         else if ((humanChoice === 'rock') && (computerChoice === 'paper')) {
-            console.log(`You lose. The computer chose: ${computerChoice}. You chose: ${humanChoice}`);
             computerScore += 1;
+            console.log(`You lose. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
+            alert(`You lose. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
         }
         else if ((humanChoice === 'paper') && (computerChoice === 'rock')) {
-            console.log(`You win. The computer chose: ${computerChoice}. You chose: ${humanChoice}`);
             humanScore += 1;
+            console.log(`You win. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
+            alert(`You win. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
         }
         else if ((humanChoice === 'paper') && (computerChoice === 'scissors')) {
-            console.log(`You lose. The computer chose: ${computerChoice}. You chose: ${humanChoice}`);
             computerScore += 1;
+            console.log(`You lose. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
+            alert(`You lose. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
         }
         else if ((humanChoice === 'scissors') && (computerChoice === 'paper')) {
-            console.log(`You win. The computer chose: ${computerChoice}. You chose: ${humanChoice}`);
             humanScore += 1;
+            console.log(`You win. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
+            alert(`You win. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
         }
         else if ((humanChoice === 'scissors') && (computerChoice === 'rock')) {
-            console.log(`You lose. The computer chose: ${computerChoice}. You chose: ${humanChoice}`);
             computerScore += 1;
+            console.log(`You lose. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
+            alert(`You lose. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
         }
         else if ((humanChoice === 'rock') && (computerChoice === 'scissors')) {
-            console.log(`You win. The computer chose: ${computerChoice}. You chose: ${humanChoice}`);
             humanScore += 1;
+            console.log(`You win. The computer chose: ${computerChoice}. You chose: ${humanChoice} \nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
+            alert(`You win. The computer chose: ${computerChoice}. You chose: ${humanChoice} \nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
         }
         else {
-            console.log('Please chose correct word');
+            alert('Please chose correct word. \nChoose and write one thing: Rock or Paper or Scissors');
+            console.log('Please chose correct word. \nChoose and write one thing: Rock or Paper or Scissors');
         }
-        console.log(`Your score: ${humanScore}. Computer\'s score: ${computerScore}`);
+        
     }
 
     if (humanScore > computerScore) {
-        console.log('Congratulatons! You win in this game!!!', `Your score: ${humanScore}. Computer\'s score: ${computerScore}`);
+        alert(`Congratulatons! You win in this game!!!\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
+        console.log(`Congratulatons! You win in this game!!!\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
     }
     
     else if (humanScore < computerScore) {
-        console.log('Oh no! You lose in this game :(', `Your score: ${humanScore}. Computer\'s score: ${computerScore}`);
+        alert(`Oh no! You lose in this game :( \nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
+        console.log(`Oh no! You lose in this game :( \nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
     }
     
     else {
-        console.log('It\'s a draw in this game. How is it possible?', `Your score: ${humanScore}. Computer\'s score: ${computerScore}`);
+        alert(`It\'s a draw in this game. How is it possible? \nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
+        console.log(`It\'s a draw in this game. How is it possible? \nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
     }
 }
 
