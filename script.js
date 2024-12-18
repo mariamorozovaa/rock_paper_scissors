@@ -29,34 +29,43 @@ function playGame () {
     while (countOfRounds < 5) {
         let humanSelection = getHumanChoice();
         let computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-        
         countOfRounds += 1;
-        console.log(`${countOfRounds} round behind`);
+        playRound(humanSelection, computerSelection);
     }
 
     function playRound (humanChoice, computerChoice) {
         humanChoice = humanChoice.toLowerCase();
     
         if (humanChoice === computerChoice) {
+            computerScore += 1;
+            humanScore += 1;
             console.log(`It\'s a draw. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
             alert(`It\'s a draw. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
+            console.log(`${countOfRounds} round behind`);
+
         }
         else if (((humanChoice === 'rock') && (computerChoice === 'paper')) || ((humanChoice === 'paper') && (computerChoice === 'scissors')) || ((humanChoice === 'scissors') && (computerChoice === 'rock'))) {
             computerScore += 1;
             console.log(`You lose. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
             alert(`You lose. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
+            console.log(`${countOfRounds} round behind`);
+
         }
         else if (((humanChoice === 'paper') && (computerChoice === 'rock')) || ((humanChoice === 'scissors') && (computerChoice === 'paper')) || ((humanChoice === 'rock') && (computerChoice === 'scissors'))) {
             humanScore += 1;
             console.log(`You win. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
             alert(`You win. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
+            console.log(`${countOfRounds} round behind`);
         }
         else {
-            alert('Please chose correct word. \nChoose and write one thing: Rock or Paper or Scissors');
-            console.log('Please chose correct word. \nChoose and write one thing: Rock or Paper or Scissors');
+            if (countOfRounds === 0) {
+                alert('Please chose correct word.');
+            } 
+            else {
+                countOfRounds -= 1;
+                alert('Please chose correct word.');
+            }
         }
-        
     }
 
     if (humanScore > computerScore) {
