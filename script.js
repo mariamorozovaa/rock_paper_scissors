@@ -1,3 +1,6 @@
+const buttons = document.querySelectorAll("button");
+const arrayOfButtons = Array.from(buttons);
+
 function getComputerChoice () {
     let randomNum = Math.floor(Math.random() * 100);
     let compChoice;
@@ -26,12 +29,12 @@ function playGame () {
     let computerScore = 0;
     let countOfRounds = 0;
 
-    while (countOfRounds < 5) {
+    // while (countOfRounds < 5) {
         let humanSelection = getHumanChoice();
         let computerSelection = getComputerChoice();
         countOfRounds += 1;
         playRound(humanSelection, computerSelection);
-    }
+    // }
 
     function playRound (humanChoice, computerChoice) {
         humanChoice = humanChoice.toLowerCase();
@@ -84,4 +87,9 @@ function playGame () {
     }
 }
 
-playGame();
+// playGame();
+
+// Создайте три кнопки, по одной для каждого выбора. Добавьте прослушиватель событий к кнопкам, которые вызывают вашу playRound функцию 
+// с правильным playerSelection каждый раз, когда нажимается кнопка. (вы можете сохранить console.logs для этого шага)
+// Добавьте div для отображения результатов и измените все ваши console.logs на методы DOM.
+// Отображайте текущий счет и объявите победителя игры, как только один из игроков наберет 5 очков.
