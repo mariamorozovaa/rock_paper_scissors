@@ -1,95 +1,73 @@
-const buttons = document.querySelectorAll("button");
-const arrayOfButtons = Array.from(buttons);
-
-function getComputerChoice () {
+function getComputerChoice() {
     let randomNum = Math.floor(Math.random() * 100);
     let compChoice;
 
-    if ((randomNum >= 0) && (randomNum < 33)) {
-        compChoice = 'rock';
-    }
-    else if ((randomNum >= 33) && (randomNum < 66)) {
-        compChoice = 'paper';
-    }
-    else {
-        compChoice = 'scissors';
+    if (randomNum >= 0 && randomNum < 33) {
+        compChoice = "rock";
+    } else if (randomNum >= 33 && randomNum < 66) {
+        compChoice = "paper";
+    } else {
+        compChoice = "scissors";
     }
 
     return compChoice;
 }
 
-function getHumanChoice () {
-    let sign = prompt("Choose and write one thing: Rock or Paper or Scissors");
+const buttons = document.querySelectorAll("button");
+let choiceOfHuman;
 
-    return sign;
-}
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        choiceOfHuman = button.id;
+        playRound(choiceOfHuman, getComputerChoice());
+    });
+});
 
-function playGame () {
-    let humanScore = 0;
-    let computerScore = 0;
-    let countOfRounds = 0;
+let humanScore = 0;
+let computerScore = 0;
 
-    // while (countOfRounds < 5) {
-        let humanSelection = getHumanChoice();
-        let computerSelection = getComputerChoice();
-        countOfRounds += 1;
-        playRound(humanSelection, computerSelection);
-    // }
+const score = document.querySelector("#score");
+const textOfScore = document.createElement("p");
+textOfScore.setAttribute("style", "font-size: 25px;");
+score.appendChild(textOfScore);
 
-    function playRound (humanChoice, computerChoice) {
-        humanChoice = humanChoice.toLowerCase();
-    
-        if (humanChoice === computerChoice) {
-            computerScore += 1;
-            humanScore += 1;
-            console.log(`It\'s a draw. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
-            alert(`It\'s a draw. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
-            console.log(`${countOfRounds} round behind`);
+const result = document.querySelector("#result");
+const textOfResults = document.createElement("p");
+textOfResults.setAttribute("style", "font-size: 25px;");
+result.appendChild(textOfResults);
 
-        }
-        else if (((humanChoice === 'rock') && (computerChoice === 'paper')) || ((humanChoice === 'paper') && (computerChoice === 'scissors')) || ((humanChoice === 'scissors') && (computerChoice === 'rock'))) {
-            computerScore += 1;
-            console.log(`You lose. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
-            alert(`You lose. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
-            console.log(`${countOfRounds} round behind`);
-
-        }
-        else if (((humanChoice === 'paper') && (computerChoice === 'rock')) || ((humanChoice === 'scissors') && (computerChoice === 'paper')) || ((humanChoice === 'rock') && (computerChoice === 'scissors'))) {
-            humanScore += 1;
-            console.log(`You win. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
-            alert(`You win. The computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
-            console.log(`${countOfRounds} round behind`);
-        }
-        else {
-            if (countOfRounds === 0) {
-                alert('Please chose correct word.');
-            } 
-            else {
-                countOfRounds -= 1;
-                alert('Please chose correct word.');
-            }
-        }
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice === computerChoice) {
+        computerScore += 1;
+        humanScore += 1;
+        textOfResults.textContent = `It\'s a draw. \nThe computer chose: ${computerChoice}. You chose: ${humanChoice}.\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`;
+    } else if (
+        (humanChoice === "rock" && computerChoice === "paper") ||
+        (humanChoice === "paper" && computerChoice === "scissors") ||
+        (humanChoice === "scissors" && computerChoice === "rock")
+    ) {
+        computerScore += 1;
+        textOfResults.textContent = `You lose. \nThe computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`;
+    } else if (
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissors" && computerChoice === "paper") ||
+        (humanChoice === "rock" && computerChoice === "scissors")
+    ) {
+        humanScore += 1;
+        textOfResults.textContent = `You win. \nThe computer chose: ${computerChoice}. You chose: ${humanChoice}\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`;
     }
-
-    if (humanScore > computerScore) {
-        alert(`Congratulatons! You win in this game!!!\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
-        console.log(`Congratulatons! You win in this game!!!\nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
-    }
-    
-    else if (humanScore < computerScore) {
-        alert(`Oh no! You lose in this game :( \nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
-        console.log(`Oh no! You lose in this game :( \nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
-    }
-    
-    else {
-        alert(`It\'s a draw in this game. How is it possible? \nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
-        console.log(`It\'s a draw in this game. How is it possible? \nYour score: ${humanScore}. Computer\'s score: ${computerScore}`);
+    if (humanScore === 5 || computerScore === 5) {
+        if (humanScore > computerScore) {
+            textOfScore.textContent = `Congratulatons! You win in this game!!!`;
+        } else if (humanScore < computerScore) {
+            textOfScore.textContent = `Oh no! You lose in this game :(`;
+        } else {
+            textOfScore.textContent = `It\'s a draw in this game. How is it possible?`;
+        }
+        // const restart = document.createElement("button");
+        // restart.textContent("Restart");
+        // сделать кнопки неактивными до нажатия кнопки рестарт
+        // после нажатия кнопки рестарт сбросить счет и результат и сделать кнопки активными
+        // переработать интерфейс
     }
 }
-
-// playGame();
-
-// Создайте три кнопки, по одной для каждого выбора. Добавьте прослушиватель событий к кнопкам, которые вызывают вашу playRound функцию 
-// с правильным playerSelection каждый раз, когда нажимается кнопка. (вы можете сохранить console.logs для этого шага)
-// Добавьте div для отображения результатов и измените все ваши console.logs на методы DOM.
-// Отображайте текущий счет и объявите победителя игры, как только один из игроков наберет 5 очков.

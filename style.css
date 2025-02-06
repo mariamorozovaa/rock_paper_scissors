@@ -43,8 +43,8 @@ div img {
     margin-bottom: 50px;
 }
 .container,
-.results,
-.score {
+#result,
+#score {
     flex: auto;
 }
 a {
@@ -65,15 +65,26 @@ body {
 }
 .footer,
 button,
-.results {
+#result {
     background-color: rgba(194, 194, 193, 0.4);
 }
 button {
     border: 3px solid rgba(194, 194, 193, 0.5);
     border-radius: 10px;
 }
-.results {
+#result,
+#score {
     text-align: center;
     width: 100%;
-    padding: 15px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    white-space: pre-wrap;
+}
+
+h2 {
+    margin-bottom: 10px;
+    font-size: 30px;
 }
